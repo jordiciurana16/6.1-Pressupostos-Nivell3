@@ -1,5 +1,5 @@
 <section>
-  <article>
+  <article *ngFor="let card of cardList; index as i">
     <div>
       <h2>{{ card.title }}</h2>
       <span>{{ card.description }}</span>
