@@ -1,17 +1,17 @@
 [
   {
     "title": "Seo",
-    "description": "Programació d'una web responsive completa",
+    "description": "Fer una campanya de SEO",
     "price": 300
   },
   {
     "title": "Ads",
-    "description": "Programació d'una web responsive completa",
+    "description": "Fer una campanya de publicitat",
     "price": 400
   },
   {
     "title": "Web",
-    "description": "Programació d'una web responsive completa",
+    "description": "Fer una pàgina web",
     "price": 500
   }
 ]
