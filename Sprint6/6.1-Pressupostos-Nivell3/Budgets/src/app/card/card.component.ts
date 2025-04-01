@@ -43,6 +43,7 @@ export class CardComponent {
       this.removeBudget(index);
     }
     console.log(this.budgetList);
+    console.log(this.getTotalBudget());
   }
 
   addBudget(index: number): void {
@@ -54,5 +55,9 @@ export class CardComponent {
     if (this.removedIndex !== -1) {
       this.budgetList.splice(this.removedIndex, 1);
     }
+  }
+
+  getTotalBudget(): number {
+    return this.budgetList.reduce((acc, curr) => acc + curr, 0);
   }
 }
