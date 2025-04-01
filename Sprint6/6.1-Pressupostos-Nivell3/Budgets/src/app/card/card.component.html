@@ -9,7 +9,15 @@
       <span>€</span>
     </div>
     <form>
-      <label><input type="checkbox" />Afegeix</label>
+      <label for="checkbox-{{ i }}">
+        <input
+          id="checkbox-{{ i }}"
+          type="checkbox"
+          [formControl]="checkboxArray.controls[i]"
+          (change)="onCheckboxChange($event, i)"
+        />
+        Afegeix
+      </label>
     </form>
   </article>
 </section>

@@ -4,13 +4,12 @@ section {
   gap: 4rem;
 }
 
-div:nth-child(2) {
+div {
   display: flex;
   align-items: flex-end;
-  gap: 0.3rem;
 }
 
-div:nth-child(2) span {
+span {
   font-size: 1.2rem;
   font-weight: 600;
 }
