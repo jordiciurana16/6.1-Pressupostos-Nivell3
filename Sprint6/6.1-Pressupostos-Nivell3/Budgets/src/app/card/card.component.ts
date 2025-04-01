@@ -3,6 +3,7 @@ import { ICard } from './i-card';
 import cardJSON from './cards.json';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormArray, FormControl } from '@angular/forms';
+import { BudgetService } from '../budget.service';
 
 @Component({
   selector: 'app-card',
@@ -13,12 +14,9 @@ import { ReactiveFormsModule, FormArray, FormControl } from '@angular/forms';
 export class CardComponent {
   cardList: ICard[] = [];
 
-  budgetList: Array<number> = [];
-  removedIndex: number | undefined;
-
   checkboxArray = new FormArray<FormControl<boolean | null>>([]);
 
-  constructor() {
+  constructor(private BudgetService: BudgetService) {
     this.cardList = cardJSON;
     this.initializeCheckboxes();
   }
@@ -42,22 +40,20 @@ export class CardComponent {
     } else if (!isChecked) {
       this.removeBudget(index);
     }
-    console.log(this.budgetList);
-    console.log(this.getTotalBudget());
+    console.log(this.BudgetService.budgetList);
+    console.log(this.BudgetService.getTotalBudget());
   }
 
   addBudget(index: number): void {
-    this.budgetList.push(this.cardList[index].price);
+    this.BudgetService.budgetList.push(this.cardList[index].price);
   }
 
   removeBudget(index: number): void {
-    this.removedIndex = this.budgetList.indexOf(this.cardList[index].price);
-    if (this.removedIndex !== -1) {
-      this.budgetList.splice(this.removedIndex, 1);
+    this.BudgetService.removedIndex = this.BudgetService.budgetList.indexOf(
+      this.cardList[index].price
+    );
+    if (this.BudgetService.removedIndex !== -1) {
+      this.BudgetService.budgetList.splice(this.BudgetService.removedIndex, 1);
     }
-  }
-
-  getTotalBudget(): number {
-    return this.budgetList.reduce((acc, curr) => acc + curr, 0);
   }
 }
