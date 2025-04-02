@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BudgetService {
+  isChecked: boolean = false;
   budgetList: Array<number> = [];
   removedIndex: number | undefined;
 
@@ -29,6 +30,7 @@ export class BudgetService {
       this.addBudget(amount);
     } else {
       this.removeBudget(amount);
+      isChecked = false;
     }
   }
 }

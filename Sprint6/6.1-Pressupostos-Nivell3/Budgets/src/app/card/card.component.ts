@@ -19,7 +19,7 @@ export class CardComponent {
 
   webCardIsChecked = false;
 
-  constructor(private BudgetService: BudgetService) {
+  constructor(public BudgetService: BudgetService) {
     this.cardList = cardJSON;
     this.initializeCheckboxes();
   }
@@ -31,14 +31,14 @@ export class CardComponent {
   }
 
   onCheckboxChange(event: Event, index: number) {
-    const isChecked = (event.target as HTMLInputElement).checked;
+    this.BudgetService.isChecked = (event.target as HTMLInputElement).checked;
 
     this.BudgetService.handleBudgetChange(
       this.cardList[index].price,
-      isChecked
+      this.BudgetService.isChecked
     );
 
-    if (isChecked && index === this.cardList.length - 1) {
+    if (this.BudgetService.isChecked && index === this.cardList.length - 1) {
       this.webCardIsChecked = true;
     }
   }

@@ -1,25 +1,31 @@
 <section>
   <article *ngFor="let card of cardList; index as i">
-    <div>
-      <h2>{{ card.title }}</h2>
-      <span>{{ card.description }}</span>
-    </div>
-    <div>
-      <h3>{{ card.price }}</h3>
-      <span>€</span>
-    </div>
-    <form>
-      <label for="checkbox-{{ i }}">
-        <input
-          id="checkbox-{{ i }}"
-          type="checkbox"
-          [formControl]="checkboxArray.controls[i]"
-          (change)="onCheckboxChange($event, i)"
-        />
-        Afegeix
-      </label>
-    </form>
-    <ng-container *ngIf="webCardIsChecked && i === cardList.length - 1">
+    <summary>
+      <div>
+        <h2>{{ card.title }}</h2>
+        <span>{{ card.description }}</span>
+      </div>
+      <div>
+        <h3>{{ card.price }}</h3>
+        <span>€</span>
+      </div>
+      <form>
+        <label for="checkbox-{{ i }}">
+          <input
+            id="checkbox-{{ i }}"
+            type="checkbox"
+            [formControl]="checkboxArray.controls[i]"
+            (change)="onCheckboxChange($event, i)"
+          />
+          Afegeix
+        </label>
+      </form>
+    </summary>
+    <ng-container
+      *ngIf="
+        webCardIsChecked && i === cardList.length - 1 && BudgetService.isChecked
+      "
+    >
       <app-panel></app-panel>
     </ng-container>
   </article>

@@ -3,10 +3,15 @@ article {
   border-radius: 2rem;
   padding: 3rem;
   display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+summary {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 0;
 }
 
 h2 {
