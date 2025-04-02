@@ -16,7 +16,20 @@ export class PanelComponent {
 
   updateValue(control: FormControl, value: boolean) {
     const inputValue = control.value;
+    this.webBudget(this.pages, this.languages);
 
-    value ? control.setValue(inputValue + 1) : control.setValue(inputValue - 1);
+    if (value) {
+      control.setValue(inputValue + 1);
+    } else if (!value && inputValue > 1) {
+      control.setValue(inputValue - 1);
+    }
+  }
+
+  webBudget(pages: FormControl, languages: FormControl): number {
+    const pagesValue = pages.value;
+    const languagesValue = languages.value;
+    const totalWebBudget = pagesValue * languagesValue * 30;
+    console.log('Total Web Budget:', totalWebBudget);
+    return totalWebBudget;
   }
 }
