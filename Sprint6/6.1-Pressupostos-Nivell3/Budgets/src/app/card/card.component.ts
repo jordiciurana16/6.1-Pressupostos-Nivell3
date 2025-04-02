@@ -29,31 +29,9 @@ export class CardComponent {
 
   onCheckboxChange(event: Event, index: number) {
     const isChecked = (event.target as HTMLInputElement).checked;
-    console.log(
-      `Checkbox at position ${index} is ${
-        isChecked ? 'checked' : 'unchecked'
-      } and the budget is ${this.cardList[index].price}`
+    this.BudgetService.handleBudgetChange(
+      this.cardList[index].price,
+      isChecked
     );
-
-    if (isChecked) {
-      this.addBudget(index);
-    } else if (!isChecked) {
-      this.removeBudget(index);
-    }
-    console.log(this.BudgetService.budgetList);
-    console.log(this.BudgetService.getTotalBudget());
-  }
-
-  addBudget(index: number): void {
-    this.BudgetService.budgetList.push(this.cardList[index].price);
-  }
-
-  removeBudget(index: number): void {
-    this.BudgetService.removedIndex = this.BudgetService.budgetList.indexOf(
-      this.cardList[index].price
-    );
-    if (this.BudgetService.removedIndex !== -1) {
-      this.BudgetService.budgetList.splice(this.BudgetService.removedIndex, 1);
-    }
   }
 }
