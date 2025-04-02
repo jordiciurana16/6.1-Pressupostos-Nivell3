@@ -19,5 +19,8 @@
         Afegeix
       </label>
     </form>
+    <ng-container *ngIf="webCardIsChecked && i === cardList.length - 1">
+      <app-panel></app-panel>
+    </ng-container>
   </article>
 </section>
