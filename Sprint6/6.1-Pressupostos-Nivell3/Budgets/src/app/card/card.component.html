@@ -21,12 +21,16 @@
         </label>
       </form>
     </summary>
-    <ng-container
-      *ngIf="
-        webCardIsChecked && i === cardList.length - 1 && BudgetService.isChecked
-      "
-    >
-      <app-panel></app-panel>
-    </ng-container>
+    <caption>
+      <ng-container
+        *ngIf="
+          webCardIsChecked &&
+          i === cardList.length - 1 &&
+          BudgetService.isChecked
+        "
+      >
+        <app-panel></app-panel>
+      </ng-container>
+    </caption>
   </article>
 </section>

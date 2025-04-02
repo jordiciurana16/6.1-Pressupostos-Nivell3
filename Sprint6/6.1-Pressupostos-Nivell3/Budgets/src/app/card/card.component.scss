@@ -14,6 +14,11 @@ summary {
   align-items: center;
 }
 
+caption {
+  display: flex;
+  justify-content: right;
+}
+
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
