@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
+import { BudgetService } from '../budget.service';
 @Component({
   selector: 'app-panel',
   imports: [ReactiveFormsModule],
@@ -12,24 +13,25 @@ export class PanelComponent {
   languages = new FormControl(1);
   target: any;
 
-  constructor() {}
+  constructor(public BudgetService: BudgetService) {}
 
   updateValue(control: FormControl, value: boolean) {
     const inputValue = control.value;
-    this.webBudget(this.pages, this.languages);
 
     if (value) {
       control.setValue(inputValue + 1);
     } else if (!value && inputValue > 1) {
       control.setValue(inputValue - 1);
     }
+    this.webBudget(this.pages, this.languages);
   }
 
-  webBudget(pages: FormControl, languages: FormControl): number {
+  webBudget(pages: FormControl, languages: FormControl): any {
     const pagesValue = pages.value;
     const languagesValue = languages.value;
-    const totalWebBudget = pagesValue * languagesValue * 30;
-    console.log('Total Web Budget:', totalWebBudget);
-    return totalWebBudget;
+    const finalBudget = this.BudgetService.getWebBudget(
+      pagesValue,
+      languagesValue
+    );
   }
 }
