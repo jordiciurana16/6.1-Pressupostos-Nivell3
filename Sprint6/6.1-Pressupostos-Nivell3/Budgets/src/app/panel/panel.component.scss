@@ -15,11 +15,23 @@ input {
 }
 
 div {
-  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+i {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+i:hover {
+  color: black;
 }
 
 button {
   border-radius: 100%;
+  width: 30px;
+  height: 30px;
   background-color: black;
   color: white;
   border: none;

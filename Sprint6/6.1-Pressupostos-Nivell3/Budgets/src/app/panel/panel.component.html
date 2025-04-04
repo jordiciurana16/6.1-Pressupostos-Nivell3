@@ -1,12 +1,13 @@
 <form>
   <div>
+    <i class="bi bi-info-circle"></i>
     <span>Nombre de pàgines</span>
     <button type="button" (click)="updateValue(pages, false)">-</button>
-
     <input type="number" [formControl]="pages" />
     <button type="button" (click)="updateValue(pages, true)">+</button>
   </div>
   <div>
+    <i class="bi bi-info-circle"></i>
     <span>Nombre d'idiomes</span>
     <button type="button" (click)="updateValue(languages, false)">-</button>
     <input type="number" [formControl]="languages" />
