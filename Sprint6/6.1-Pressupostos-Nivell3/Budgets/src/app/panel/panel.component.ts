@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 export class PanelComponent {
   pages = new FormControl(1);
   languages = new FormControl(1);
+  showModal = false;
+  activeModal: 'pages' | 'languages' | null = null;
 
   constructor(public BudgetService: BudgetService) {}
 
@@ -32,5 +34,13 @@ export class PanelComponent {
       pagesValue,
       languagesValue
     );
+  }
+
+  openModal(type: 'pages' | 'languages') {
+    this.activeModal = type;
+  }
+
+  closeModal() {
+    this.activeModal = null;
   }
 }

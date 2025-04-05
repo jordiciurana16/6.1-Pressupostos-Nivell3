@@ -28,11 +28,32 @@ i:hover {
   color: black;
 }
 
-button {
+button.update {
   border-radius: 100%;
   width: 30px;
   height: 30px;
   background-color: black;
   color: white;
   border: none;
+}
+
+.modal {
+  display: block;
+}
+
+.modal-dialog {
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
 }
