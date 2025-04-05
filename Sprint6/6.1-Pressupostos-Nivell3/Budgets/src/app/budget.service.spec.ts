@@ -13,4 +13,10 @@ describe('BudgetService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should calculate total budget correctly', () => {
+    service.addBudget(100);
+    service.addBudget(200);
+    expect(service.getTotalBudget()).toBe(300);
+  });
 });
