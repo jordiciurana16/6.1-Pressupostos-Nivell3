@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BudgetService } from '../budget.service';
@@ -29,13 +34,20 @@ export class FormComponent {
   ) {}
   ngOnInit() {
     this.RequireBudgetForm = this.formBuilder.group({
-      name: new FormControl(''),
-      phone: new FormControl(''),
-      mail: new FormControl(''),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{9}$'),
+      ]),
+      mail: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
   onSubmit() {
+    if (this.RequireBudgetForm.invalid) {
+      alert('Formulari invàlid. Si us plau, revisa els camps.');
+      return;
+    }
     if (!this.userObject) {
       this.userObject = {
         name: '',

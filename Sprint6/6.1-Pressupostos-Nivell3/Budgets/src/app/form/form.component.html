@@ -3,8 +3,50 @@
     <h1>Demanar pressupost</h1>
     <form [formGroup]="RequireBudgetForm" (ngSubmit)="onSubmit()">
       <input formControlName="name" placeholder="Nom" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('name')?.invalid &&
+          RequireBudgetForm.get('name')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('name')?.errors?.['required']"
+          >El nom és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('name')?.errors?.['minlength']"
+          >El nom ha de tenir almenys 3 caràcters.</small
+        >
+      </div>
+
       <input formControlName="phone" placeholder="Telèfon" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('phone')?.invalid &&
+          RequireBudgetForm.get('phone')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('phone')?.errors?.['required']"
+          >El telèfon és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('phone')?.errors?.['pattern']"
+          >El telèfon ha de tenir 9 dígits.</small
+        >
+      </div>
+
       <input formControlName="mail" placeholder="Email" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('mail')?.invalid &&
+          RequireBudgetForm.get('mail')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('mail')?.errors?.['required']"
+          >L'email és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('mail')?.errors?.['email']"
+          >L'email no és vàlid.</small
+        >
+      </div>
+
       <button>Sol·licitar pressupost</button>
     </form>
   </section>
