@@ -51,6 +51,14 @@
     </form>
   </section>
 
+  <hr />
+
+  <div>
+    <button (click)="sortByDate()">Data</button>
+    <button (click)="sortByPrice()">Preu</button>
+    <button (click)="sortAlphabetically()">Alfabèticament</button>
+  </div>
+
   <ng-container *ngFor="let user of usersBudgetList; index as i">
     <article>
       <div>

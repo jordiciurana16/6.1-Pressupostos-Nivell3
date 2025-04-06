@@ -63,6 +63,21 @@ export class FormComponent {
     this.userObject.price = this.BudgetService.getTotalBudget();
     this.userObject.services = this.BudgetService.serviceNamesList;
 
-    this.usersBudgetList.push({ ...this.userObject });
+    this.usersBudgetList.push({ ...this.userObject, date: new Date() });
+  }
+
+  sortByDate() {
+    this.usersBudgetList.sort(
+      (a: any, b: any) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }
+
+  sortByPrice() {
+    this.usersBudgetList.sort((a: any, b: any) => b.price - a.price);
+  }
+
+  sortAlphabetically() {
+    this.usersBudgetList.sort((a: any, b: any) => a.name.localeCompare(b.name));
   }
 }
