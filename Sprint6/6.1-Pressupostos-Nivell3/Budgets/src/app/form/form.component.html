@@ -9,19 +9,20 @@
     </form>
   </section>
 
-  <ng-container>
+  <ng-container *ngFor="let user of usersBudgetList; index as i">
     <article>
       <div>
-        <h5>Name</h5>
-        <span>mail</span><span>telefon</span>
+        <h5>{{ usersBudgetList[i].name }}</h5>
+        <span>{{ usersBudgetList[i].phone }}</span
+        ><span>{{ usersBudgetList[i].mail }}</span>
       </div>
       <div>
         <h3>Serveis contractats</h3>
         <ul>
-          <li>Seo</li>
+          <li>{{ usersBudgetList[i].services }}</li>
         </ul>
       </div>
-      <div>Total 400€</div>
+      <div>Total {{ usersBudgetList[i].price }}</div>
     </article>
   </ng-container>
 </main>
