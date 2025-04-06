@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ICard } from './card/i-card';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,8 @@ export class BudgetService {
   budgetList: Array<number> = [];
   removedIndex: number | undefined;
   totalWebBudget: number = 0;
+  cardList: ICard[] = [];
+  serviceNamesList: string[] = [];
 
   constructor() {}
 
@@ -28,11 +31,16 @@ export class BudgetService {
     }
   }
 
-  handleBudgetChange(amount: number, isChecked: boolean): void {
+  handleBudgetChange(card: ICard, isChecked: boolean): void {
     if (isChecked) {
-      this.addBudget(amount);
+      this.addBudget(card.price);
+      this.serviceNamesList.push(card.title);
+      console.log(this.serviceNamesList);
     } else {
-      this.removeBudget(amount);
+      this.removeBudget(card.price);
+      this.serviceNamesList.pop();
+      console.log(this.serviceNamesList);
+
       isChecked = false;
     }
   }

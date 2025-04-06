@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ICard } from './i-card';
 import cardJSON from './cards.json';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormArray, FormControl } from '@angular/forms';
@@ -13,19 +12,17 @@ import { PanelComponent } from '../panel/panel.component';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  cardList: ICard[] = [];
-
   checkboxArray = new FormArray<FormControl<boolean | null>>([]);
 
   webCardIsChecked = false;
 
   constructor(public BudgetService: BudgetService) {
-    this.cardList = cardJSON;
+    this.BudgetService.cardList = cardJSON;
     this.initializeCheckboxes();
   }
 
   initializeCheckboxes() {
-    this.cardList.forEach(() =>
+    this.BudgetService.cardList.forEach(() =>
       this.checkboxArray.push(new FormControl(false))
     );
   }
@@ -33,13 +30,16 @@ export class CardComponent {
   onCheckboxChange(event: Event, index: number) {
     this.BudgetService.isChecked = (event.target as HTMLInputElement).checked;
 
-    this.BudgetService.handleBudgetChange(
-      this.cardList[index].price,
-      this.BudgetService.isChecked
-    );
+    const card = this.BudgetService.cardList[index];
+    this.BudgetService.handleBudgetChange(card, this.BudgetService.isChecked);
 
-    if (this.BudgetService.isChecked && index === this.cardList.length - 1) {
+    if (
+      this.BudgetService.isChecked &&
+      index === this.BudgetService.cardList.length - 1
+    ) {
       this.webCardIsChecked = true;
     }
   }
+
+  freelanceServiceChecked() {}
 }

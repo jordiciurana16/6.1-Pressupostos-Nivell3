@@ -1,5 +1,5 @@
 <section>
-  <article *ngFor="let card of cardList; index as i">
+  <article *ngFor="let card of this.BudgetService.cardList; index as i">
     <summary>
       <div>
         <h2>{{ card.title }}</h2>
@@ -25,7 +25,7 @@
       <ng-container
         *ngIf="
           webCardIsChecked &&
-          i === cardList.length - 1 &&
+          i === this.BudgetService.cardList.length - 1 &&
           BudgetService.isChecked
         "
       >

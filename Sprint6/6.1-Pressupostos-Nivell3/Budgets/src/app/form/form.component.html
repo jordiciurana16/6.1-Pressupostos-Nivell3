@@ -1,9 +1,27 @@
 <main>
-  <h1>Demanar pressupost</h1>
-  <form>
-    <input placeholder="Nom" />
-    <input placeholder="Telèfon" />
-    <input placeholder="Email" />
-    <button>Sol·licitar pressupost</button>
-  </form>
+  <section>
+    <h1>Demanar pressupost</h1>
+    <form [formGroup]="RequireBudgetForm" (ngSubmit)="onSubmit()">
+      <input formControlName="name" placeholder="Nom" />
+      <input formControlName="phone" placeholder="Telèfon" />
+      <input formControlName="mail" placeholder="Email" />
+      <button>Sol·licitar pressupost</button>
+    </form>
+  </section>
+
+  <ng-container>
+    <article>
+      <div>
+        <h5>Name</h5>
+        <span>mail</span><span>telefon</span>
+      </div>
+      <div>
+        <h3>Serveis contractats</h3>
+        <ul>
+          <li>Seo</li>
+        </ul>
+      </div>
+      <div>Total 400€</div>
+    </article>
+  </ng-container>
 </main>
