@@ -28,6 +28,13 @@ button {
   border-radius: 1rem;
 }
 
+menu {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 article {
   display: flex;
   justify-content: space-between;

@@ -55,7 +55,7 @@
 
   <h2>Pressupostos en curs</h2>
 
-  <div>
+  <menu>
     <button (click)="sortByDate()">Data</button>
     <button (click)="sortByPrice()">Preu</button>
     <button (click)="sortAlphabetically()">Alfabèticament</button>
@@ -64,7 +64,7 @@
       placeholder="Cerca per nom"
       (input)="filterByName($event)"
     />
-  </div>
+  </menu>
 
   <ng-container *ngFor="let user of filteredUsersBudgetList; index as i">
     <article>
