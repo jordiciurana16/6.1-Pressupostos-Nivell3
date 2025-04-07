@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICard } from './card/i-card';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,11 @@ export class BudgetService {
   totalWebBudget: number = 0;
   cardList: ICard[] = [];
   serviceNamesList: string[] = [];
+  currentUrl: string = '';
 
-  constructor() {}
+  constructor(private router: Router) {
+    this.currentUrl = this.router.url;
+  }
 
   getTotalBudget(): number {
     return (
@@ -52,5 +56,9 @@ export class BudgetService {
       this.totalWebBudget = pages * languages * 30;
     }
     return this.totalWebBudget;
+  }
+
+  getCurrentUrl(): string {
+    return this.currentUrl;
   }
 }

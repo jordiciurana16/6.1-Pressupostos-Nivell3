@@ -3,6 +3,7 @@ import { BannerComponent } from '../banner/banner.component';
 import { BudgetsComponent } from '../budgets/budgets.component';
 import { RouterModule, RouterLink } from '@angular/router';
 import { FormComponent } from '../form/form.component';
+import { BudgetService } from '../budget.service';
 
 @Component({
   selector: 'app-landing',
@@ -16,4 +17,10 @@ import { FormComponent } from '../form/form.component';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })
-export class LandingComponent {}
+export class LandingComponent {
+  constructor(public budgetService: BudgetService) {}
+
+  copyUrl() {
+    navigator.clipboard.writeText(window.location.href);
+  }
+}

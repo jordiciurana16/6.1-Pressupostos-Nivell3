@@ -1,5 +1,9 @@
 <header>
-  <span>Pressupostos</span> <button [routerLink]="['/']">Back</button>
+  <button [routerLink]="['/']">Back</button>
+  <span>
+    <p>Current URL: {{ budgetService.getCurrentUrl() }}</p>
+    <button (click)="copyUrl()">Share Budget</button>
+  </span>
 </header>
 <app-banner></app-banner>
 <app-budgets></app-budgets>

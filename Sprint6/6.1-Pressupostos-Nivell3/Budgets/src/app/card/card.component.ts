@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import cardJSON from './cards.json';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormArray, FormControl } from '@angular/forms';
 import { BudgetService } from '../budget.service';
 import { PanelComponent } from '../panel/panel.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -11,14 +12,33 @@ import { PanelComponent } from '../panel/panel.component';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   checkboxArray = new FormArray<FormControl<boolean | null>>([]);
 
   webCardIsChecked = false;
 
-  constructor(public BudgetService: BudgetService) {
+  constructor(
+    public BudgetService: BudgetService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.BudgetService.cardList = cardJSON;
     this.initializeCheckboxes();
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.BudgetService.cardList.forEach((_, index) => {
+        const isChecked = params[`card${index}`] === 'true';
+        this.checkboxArray.at(index).setValue(isChecked);
+        if (isChecked) {
+          this.BudgetService.handleBudgetChange(
+            this.BudgetService.cardList[index],
+            true
+          );
+        }
+      });
+    });
   }
 
   initializeCheckboxes() {
@@ -39,7 +59,19 @@ export class CardComponent {
     ) {
       this.webCardIsChecked = true;
     }
+
+    this.updateUrl();
   }
 
-  freelanceServiceChecked() {}
+  private updateUrl() {
+    const queryParams: any = {};
+    this.checkboxArray.controls.forEach((control, index) => {
+      queryParams[`card${index}`] = control.value;
+    });
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
 }
