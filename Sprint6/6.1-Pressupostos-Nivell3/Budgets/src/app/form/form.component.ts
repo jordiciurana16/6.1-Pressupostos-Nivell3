@@ -26,6 +26,7 @@ export class FormComponent {
       }
     | undefined;
   usersBudgetList: any = [];
+  filteredUsersBudgetList: any = [];
   RequireBudgetForm!: FormGroup;
 
   constructor(
@@ -41,6 +42,7 @@ export class FormComponent {
       ]),
       mail: new FormControl('', [Validators.required, Validators.email]),
     });
+    this.filteredUsersBudgetList = this.usersBudgetList;
   }
 
   onSubmit() {
@@ -64,6 +66,7 @@ export class FormComponent {
     this.userObject.services = this.BudgetService.serviceNamesList;
 
     this.usersBudgetList.push({ ...this.userObject, date: new Date() });
+    this.filteredUsersBudgetList = [...this.usersBudgetList];
   }
 
   sortByDate() {
@@ -79,5 +82,18 @@ export class FormComponent {
 
   sortAlphabetically() {
     this.usersBudgetList.sort((a: any, b: any) => a.name.localeCompare(b.name));
+  }
+
+  filterByName(event: Event) {
+    const searchValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    if (!searchValue) {
+      this.filteredUsersBudgetList = [...this.usersBudgetList];
+      return;
+    }
+    this.filteredUsersBudgetList = this.usersBudgetList.filter((user: any) =>
+      user.name.toLowerCase().includes(searchValue)
+    );
   }
 }

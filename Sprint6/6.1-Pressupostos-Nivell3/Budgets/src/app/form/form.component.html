@@ -53,26 +53,33 @@
 
   <hr />
 
+  <h2>Pressupostos en curs</h2>
+
   <div>
     <button (click)="sortByDate()">Data</button>
     <button (click)="sortByPrice()">Preu</button>
     <button (click)="sortAlphabetically()">Alfabèticament</button>
+    <input
+      type="search"
+      placeholder="Cerca per nom"
+      (input)="filterByName($event)"
+    />
   </div>
 
-  <ng-container *ngFor="let user of usersBudgetList; index as i">
+  <ng-container *ngFor="let user of filteredUsersBudgetList; index as i">
     <article>
       <div>
-        <h5>{{ usersBudgetList[i].name }}</h5>
-        <span>{{ usersBudgetList[i].phone }}</span
-        ><span>{{ usersBudgetList[i].mail }}</span>
+        <h5>{{ user.name }}</h5>
+        <span>{{ user.phone }}</span>
+        <span>{{ user.mail }}</span>
       </div>
       <div>
         <h3>Serveis contractats</h3>
         <ul>
-          <li>{{ usersBudgetList[i].services }}</li>
+          <li *ngFor="let service of user.services">{{ service }}</li>
         </ul>
       </div>
-      <div>Total {{ usersBudgetList[i].price }}</div>
+      <div>Total {{ user.price }}</div>
     </article>
   </ng-container>
 </main>
