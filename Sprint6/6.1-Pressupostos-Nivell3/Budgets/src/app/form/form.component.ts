@@ -70,18 +70,20 @@ export class FormComponent {
   }
 
   sortByDate() {
-    this.usersBudgetList.sort(
+    this.filteredUsersBudgetList.sort(
       (a: any, b: any) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   }
 
   sortByPrice() {
-    this.usersBudgetList.sort((a: any, b: any) => b.price - a.price);
+    this.filteredUsersBudgetList.sort((a: any, b: any) => b.price - a.price);
   }
 
   sortAlphabetically() {
-    this.usersBudgetList.sort((a: any, b: any) => a.name.localeCompare(b.name));
+    this.filteredUsersBudgetList.sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
+    );
   }
 
   filterByName(event: Event) {
