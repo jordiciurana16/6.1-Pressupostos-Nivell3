@@ -1,1 +1,7 @@
-<p>starships-view works!</p>
+<div class="flex flex-col gap-4 md:p-8 max-w-screen-sm mx-auto">
+  <app-starship-card
+    *ngFor="let starship of starshipsList"
+    (click)="goToStarshipDetails(starship.id)"
+    [starship]="starship"
+  ></app-starship-card>
+</div>
