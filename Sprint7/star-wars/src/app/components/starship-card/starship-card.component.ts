@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Starship } from '../../models/starship.model';
 
 @Component({
   selector: 'app-starship-card',
@@ -7,5 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './starship-card.component.scss',
 })
 export class StarshipCardComponent {
-  @Input() starship!: any;
+  @Input() starship!: Starship; // Canviem any per Starship
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { StarshipCardComponent } from '../../../starship-card/starship-card.component';
 import { ApiService } from '../../../../service/api.service';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { Starship } from '../../../../models/starship.model'; // Crear un model per a Starship
 
 @Component({
   selector: 'app-starships-view',
@@ -11,7 +12,7 @@ import { Router, RouterLink, ActivatedRoute } from '@angular/router';
   styleUrl: './starships-view.component.scss',
 })
 export class StarshipsViewComponent implements OnInit {
-  starshipsList: any[] = [];
+  starshipsList: Starship[] = []; // Canviem any[] per Starship[]
   starshipId: string | null = null;
 
   constructor(
@@ -32,9 +33,14 @@ export class StarshipsViewComponent implements OnInit {
     if (this.starshipId) {
       console.log(`Starship ID: ${this.starshipId}`);
     }
-    this.apiService.getStarships().subscribe((data: any) => {
-      this.starshipsList = data.results;
-      console.log(this.starshipsList);
+    this.apiService.getStarships().subscribe({
+      next: (data: any) => {
+        this.starshipsList = data.results;
+        console.log(this.starshipsList);
+      },
+      error: (err) => {
+        console.error('Error fetching starships:', err);
+      },
     });
   }
 
@@ -44,10 +50,15 @@ export class StarshipsViewComponent implements OnInit {
   }
 
   loadMoreStarships() {
-    this.apiService.getNextStarships().subscribe((data: any) => {
-      this.apiService.nextPageUrl = data.next; // Actualitza nextPageUrl
-      this.starshipsList = [...this.starshipsList, ...data.results]; // Afegeix els nous resultats
-      console.log(this.apiService.nextPageUrl);
+    this.apiService.getNextStarships().subscribe({
+      next: (data: any) => {
+        this.apiService.nextPageUrl = data.next;
+        this.starshipsList = [...this.starshipsList, ...data.results];
+        console.log(this.apiService.nextPageUrl);
+      },
+      error: (err) => {
+        console.error('Error loading more starships:', err);
+      },
     });
   }
 }
