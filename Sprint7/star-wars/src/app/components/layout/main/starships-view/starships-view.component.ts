@@ -15,7 +15,7 @@ export class StarshipsViewComponent implements OnInit {
   starshipId: string | null = null;
 
   constructor(
-    private apiService: ApiService,
+    public apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
   ) {}

@@ -8,6 +8,7 @@ export class ApiService {
   private apiUrl = 'https://swapi.py4e.com/api/';
   id: number | undefined = undefined;
   nextPageUrl: string | undefined = undefined;
+  noMorePages: boolean = false; // Variable per controlar si hi ha més pàgines
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +26,7 @@ export class ApiService {
 
   getNextStarships(): Observable<any> {
     if (!this.nextPageUrl) {
-      throw new Error('Next page URL is undefined');
+      this.noMorePages = true;
     }
     return this.http.get<any>(`${this.nextPageUrl}`);
   }
