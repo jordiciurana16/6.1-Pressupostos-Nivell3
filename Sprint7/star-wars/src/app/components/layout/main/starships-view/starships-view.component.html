@@ -4,4 +4,11 @@
     (click)="goToStarshipDetails(extractStarshipId(starship.url))"
     [starship]="starship"
   ></app-starship-card>
+
+  <button
+    class="px-6 py-3 bg-yellow-300 text-black font-semibold rounded-lg shadow-md transition duration-300"
+    (click)="loadMoreStarships()"
+  >
+    View More Starships
+  </button>
 </div>

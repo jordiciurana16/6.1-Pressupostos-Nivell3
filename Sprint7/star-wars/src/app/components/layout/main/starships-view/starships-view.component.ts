@@ -34,11 +34,20 @@ export class StarshipsViewComponent implements OnInit {
     }
     this.apiService.getStarships().subscribe((data: any) => {
       this.starshipsList = data.results;
+      console.log(this.starshipsList);
     });
   }
 
   public extractStarshipId(url: string): string {
     const segments = url.split('/').filter((segment) => segment);
     return segments.pop() || '';
+  }
+
+  loadMoreStarships() {
+    this.apiService.getNextStarships().subscribe((data: any) => {
+      this.apiService.nextPageUrl = data.next; // Actualitza nextPageUrl
+      this.starshipsList = [...this.starshipsList, ...data.results]; // Afegeix els nous resultats
+      console.log(this.apiService.nextPageUrl);
+    });
   }
 }
