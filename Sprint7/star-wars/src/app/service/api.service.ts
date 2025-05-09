@@ -13,7 +13,7 @@ export class ApiService {
     return this.http.get<any>(`${this.apiUrl}/starships?format=json`);
   }
 
-  getStarshipId(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/starships/${id}/?format=json`);
+  getStarshipId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/starships/${id}/?format=json`);
   }
 }
