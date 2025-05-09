@@ -5,11 +5,15 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private apiUrl = 'https://swapi.py4e.com/api/';
+  id: number | undefined = undefined;
 
   constructor(private http: HttpClient) {}
 
-  // Exemple GET
-  getStarships(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/starships?format=json`);
+  getStarships(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/starships?format=json`);
+  }
+
+  getStarshipId(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/starships/${id}/?format=json`);
   }
 }
