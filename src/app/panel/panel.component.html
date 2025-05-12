@@ -1,0 +1,80 @@
+<form>
+  <div>
+    <i class="bi bi-info-circle" (click)="openModal('pages')"></i>
+    <span>Nombre de pàgines</span>
+    <button type="button" class="update" (click)="updateValue(pages, false)">
+      -
+    </button>
+    <input type="number" [formControl]="pages" />
+    <button type="button" class="update" (click)="updateValue(pages, true)">
+      +
+    </button>
+  </div>
+  <div>
+    <i class="bi bi-info-circle" (click)="openModal('languages')"></i>
+    <span>Nombre d'idiomes</span>
+    <button
+      class="update"
+      type="button"
+      (click)="updateValue(languages, false)"
+    >
+      -
+    </button>
+    <input type="number" [formControl]="languages" />
+    <button type="button" class="update" (click)="updateValue(languages, true)">
+      +
+    </button>
+  </div>
+</form>
+
+<div
+  class="modal fade"
+  tabindex="-1"
+  [class.show]="activeModal === 'pages'"
+  [style.display]="activeModal === 'pages' ? 'block' : 'none'"
+  role="dialog"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Número de pàgines</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Afegeix les pàgines que tindra el teu projecte.</p>
+        <p>El cost de cada pàgina és de 30€.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  tabindex="-1"
+  [class.show]="activeModal === 'languages'"
+  [style.display]="activeModal === 'languages' ? 'block' : 'none'"
+  role="dialog"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Número de llenguatges</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Afegeix els llenguatges que tindra el teu projecte.</p>
+        <p>El cost de cada llenguatge és de 30€.</p>
+      </div>
+    </div>
+  </div>
+</div>

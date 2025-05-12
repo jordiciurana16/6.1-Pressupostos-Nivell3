@@ -1,0 +1,85 @@
+<main>
+  <section>
+    <h1>Demanar pressupost</h1>
+    <form [formGroup]="RequireBudgetForm" (ngSubmit)="onSubmit()">
+      <input formControlName="name" placeholder="Nom" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('name')?.invalid &&
+          RequireBudgetForm.get('name')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('name')?.errors?.['required']"
+          >El nom és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('name')?.errors?.['minlength']"
+          >El nom ha de tenir almenys 3 caràcters.</small
+        >
+      </div>
+
+      <input formControlName="phone" placeholder="Telèfon" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('phone')?.invalid &&
+          RequireBudgetForm.get('phone')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('phone')?.errors?.['required']"
+          >El telèfon és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('phone')?.errors?.['pattern']"
+          >El telèfon ha de tenir 9 dígits.</small
+        >
+      </div>
+
+      <input formControlName="mail" placeholder="Email" />
+      <div
+        *ngIf="
+          RequireBudgetForm.get('mail')?.invalid &&
+          RequireBudgetForm.get('mail')?.touched
+        "
+      >
+        <small *ngIf="RequireBudgetForm.get('mail')?.errors?.['required']"
+          >L'email és obligatori.</small
+        >
+        <small *ngIf="RequireBudgetForm.get('mail')?.errors?.['email']"
+          >L'email no és vàlid.</small
+        >
+      </div>
+
+      <button>Sol·licitar pressupost</button>
+    </form>
+  </section>
+
+  <hr />
+
+  <h2>Pressupostos en curs</h2>
+
+  <menu>
+    <button (click)="sortByDate()">Data</button>
+    <button (click)="sortByPrice()">Preu</button>
+    <button (click)="sortAlphabetically()">Alfabèticament</button>
+    <input
+      type="search"
+      placeholder="Cerca per nom"
+      (input)="filterByName($event)"
+    />
+  </menu>
+
+  <ng-container *ngFor="let user of filteredUsersBudgetList; index as i">
+    <article>
+      <div>
+        <h5>{{ user.name }}</h5>
+        <span>{{ user.phone }}</span>
+        <span>{{ user.mail }}</span>
+      </div>
+      <div>
+        <h3>Serveis contractats</h3>
+        <ul>
+          <li>{{ usersBudgetList[i].services }}</li>
+        </ul>
+      </div>
+      <div>Total {{ user.price }}</div>
+    </article>
+  </ng-container>
+</main>

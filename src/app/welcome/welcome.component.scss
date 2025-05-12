@@ -1,0 +1,26 @@
+section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+article {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(139, 139, 139);
+  border-radius: 2rem;
+  justify-content: center;
+  gap: 3rem;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}

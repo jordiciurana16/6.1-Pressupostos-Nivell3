@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Seo",
+    "description": "Fer una campanya de SEO",
+    "price": 300
+  },
+  {
+    "title": "Ads",
+    "description": "Fer una campanya de publicitat",
+    "price": 400
+  },
+  {
+    "title": "Web",
+    "description": "Fer una pàgina web",
+    "price": 500
+  }
+]

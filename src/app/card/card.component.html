@@ -1,0 +1,36 @@
+<section>
+  <article *ngFor="let card of this.BudgetService.cardList; index as i">
+    <summary>
+      <div>
+        <h2>{{ card.title }}</h2>
+        <span>{{ card.description }}</span>
+      </div>
+      <div>
+        <h3>{{ card.price }}</h3>
+        <span>€</span>
+      </div>
+      <form>
+        <label for="checkbox-{{ i }}">
+          <input
+            id="checkbox-{{ i }}"
+            type="checkbox"
+            [formControl]="checkboxArray.controls[i]"
+            (change)="onCheckboxChange($event, i)"
+          />
+          Afegeix
+        </label>
+      </form>
+    </summary>
+    <caption>
+      <ng-container
+        *ngIf="
+          webCardIsChecked &&
+          i === this.BudgetService.cardList.length - 1 &&
+          BudgetService.isChecked
+        "
+      >
+        <app-panel></app-panel>
+      </ng-container>
+    </caption>
+  </article>
+</section>
